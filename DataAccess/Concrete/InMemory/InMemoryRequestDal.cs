@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryRequestDal : IRequestDal
     {
-        public void Add(Request request)
+        public void Add(Request request) 
         {
             throw new NotImplementedException();
         }
