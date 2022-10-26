@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Concrete;
+using DataAccess.Concrete.InMemory;
+using System;
 
 namespace ConsoleUI
 {
@@ -6,7 +8,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            RequestManager requestManager = new RequestManager(new InMemoryRequestDal());
+
+            foreach (var request in requestManager.GetAll())
+            {
+                Console.WriteLine(request.ReasonRequest);
+            }
+            
         }
     }
 }

@@ -2,30 +2,58 @@
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryRequestDal : IRequestDal
     {
+        //veri tabanı görevi alıyor
+        List<Request> _request;
+        public InMemoryRequestDal()
+        {
+            //uygulama çalıştığı anda listelesin
+            _request = new List<Request> { 
+                new Request{RequestId=1, CategoryId=1, ReasonRequest="sma hastası", Wallet="123jkadjkj12312", CollectedAid=123431.23},
+                new Request{RequestId=2, CategoryId=1, ReasonRequest="x hastalığı", Wallet="12afaadjkj12312", CollectedAid=123131.23},
+                new Request{RequestId=3, CategoryId=2, ReasonRequest="y hastası", Wallet="123jkrjkj12312", CollectedAid=123131.23},
+                new Request{RequestId=4, CategoryId=2, ReasonRequest="z hastası", Wallet="123jkfhhfhfkj12312", CollectedAid=123131.23},
+                new Request{RequestId=5, CategoryId=2, ReasonRequest="w hastası", Wallet="123jkahfthkj12312", CollectedAid=123131.23}
+            };
+        }
         public void Add(Request request) 
         {
-            throw new NotImplementedException();
+            //gelen talepi veri tabanına eklen
+            _request.Add(request); 
         }
 
         public void Delete(Request request)
         {
-            throw new NotImplementedException();
+            //LINQ - Language Integrated Query
+            //Lambda
+            Request requestToDelete = null;
+            requestToDelete = _request.SingleOrDefault(r => r.RequestId  == request.RequestId);
+
+            _request.Remove(requestToDelete);
         }
 
         public List<Request> GetAll()
         {
-            throw new NotImplementedException();
+            return _request;
+        }
+
+        public List<Request> GetAllCategory(int categoryId)
+        {
+            return _request.Where(r => r.CategoryId == categoryId).ToList();
         }
 
         public void Update(Request request)
         {
-            throw new NotImplementedException();
+            //gönderdiğim talep aidisine sahip listedeki talebi bul
+           Request requestToUpdate = _request.SingleOrDefault(r => r.RequestId == request.RequestId);
+
+            requestToUpdate.ReasonRequest = request.ReasonRequest;
         }
     }
 }

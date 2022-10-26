@@ -12,7 +12,7 @@ namespace Entities.Concrete
     // 
     public class Request : IEntity
     {
-        public int Id { get; set; }
+        public int RequestId { get; set; }
         public int CategoryId { get; set; }
 
         //cüzdan
@@ -22,7 +22,7 @@ namespace Entities.Concrete
         //talep nedeni
         public string ReasonRequest { get; set; }
         //Toplanan yardım 
-        public int CollectedAid { get; set; }
+        public double CollectedAid { get; set; }
 
     }
 }

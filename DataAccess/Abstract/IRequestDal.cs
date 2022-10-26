@@ -13,5 +13,7 @@ namespace DataAccess.Abstract
         void Add(Request request);
         void Update(Request request);
         void Delete(Request request);
+
+        List<Request> GetAllCategory(int categoryId);
     }
 }
