@@ -6,14 +6,11 @@ using System.Text;
 namespace DataAccess.Abstract
 {
     // veri tabanı işleri
-    public interface IRequestDal
+    public interface IRequestDal:IEntityRepository<Request>
     {
 
-        List<Request> GetAll();
-        void Add(Request request);
-        void Update(Request request);
-        void Delete(Request request);
-
-        List<Request> GetAllCategory(int categoryId);
+        
+        /*//kategoriye göre listeleme
+        List<Request> GetAllCategory(int categoryId);*/
     }
 }

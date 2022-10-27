@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -38,9 +39,19 @@ namespace DataAccess.Concrete.InMemory
             _request.Remove(requestToDelete);
         }
 
+        public Request Get(Expression<Func<Request, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Request> GetAll()
         {
             return _request;
+        }
+
+        public List<Request> GetAll(Expression<Func<Request, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Request> GetAllCategory(int categoryId)
@@ -50,7 +61,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Request request)
         {
-            //gönderdiğim talep aidisine sahip listedeki talebi bul
+            //gönderdiğim talep id'isine sahip listedeki talebi bul
            Request requestToUpdate = _request.SingleOrDefault(r => r.RequestId == request.RequestId);
 
             requestToUpdate.ReasonRequest = request.ReasonRequest;
