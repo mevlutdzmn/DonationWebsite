@@ -23,5 +23,16 @@ namespace Business.Concrete
             //yetkisi varmı?
             return _requestDal.GetAll();
         }
+
+        public List<Request> GetByCategoryId(int id)
+        {
+            //gönderdiğim id eşit ise kategori id ye listele
+            return _requestDal.GetAll(r => r.CategoryId == id);
+        }
+
+        public List<Request> GetByCollectedAid(double collectedAid)
+        {
+            return _requestDal.GetAll(r => r.CollectedAid == collectedAid);
+        }
     }
 }

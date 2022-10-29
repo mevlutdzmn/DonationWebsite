@@ -3,6 +3,7 @@ using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -40,15 +41,22 @@ namespace DataAccess.Concrete.EntityFramework
                 context.SaveChanges();
             }
         }
-
+        //tek data getirmek için yazıldı
         public Request Get(Expression<Func<Request, bool>> filter)
         {
-            throw new NotImplementedException();
+            using (DonationWebsiteContext context = new DonationWebsiteContext())
+            {
+                return context.Set<Request>().SingleOrDefault(filter);
+            }
         }
-
+        //expression filtre verebilir isterse vermeyedebiler null ile 
         public List<Request> GetAll(Expression<Func<Request, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            using (DonationWebsiteContext context = new DonationWebsiteContext())
+            {
+                //eğer filtre verilmemişse tüm veritabanını listele ama verilmişse : eğer filtre verilmişse filtereye göre listele
+                return filter == null ? context.Set<Request>().ToList() : context.Set<Request>().Where(filter).ToList();
+            }
         }
 
         public void Update(Request entity)
