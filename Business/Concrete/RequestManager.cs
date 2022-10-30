@@ -30,7 +30,7 @@ namespace Business.Concrete
             return _requestDal.GetAll(r => r.CategoryId == id);
         }
 
-        public List<Request> GetByCollectedAid(double collectedAid)
+        public List<Request> GetByCollectedAid(int collectedAid)
         {
             return _requestDal.GetAll(r => r.CollectedAid == collectedAid);
         }

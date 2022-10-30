@@ -18,11 +18,11 @@ namespace Entities.Concrete
         //cüzdan
         public string Wallet { get; set; }
         //talep tarihi
-        public DateTime Date { get; set; }
+        //public DateTime Date { get; set; }
         //talep nedeni
         public string ReasonRequest { get; set; }
         //Toplanan yardım 
-        public double CollectedAid { get; set; }
+        public int CollectedAid { get; set; }
 
     }
 }

@@ -16,11 +16,11 @@ namespace DataAccess.Concrete.InMemory
         {
             //uygulama çalıştığı anda listelesin
             _request = new List<Request> { 
-                new Request{RequestId=1, CategoryId=1, ReasonRequest="sma hastası", Wallet="123jkadjkj12312", CollectedAid=123431.23},
-                new Request{RequestId=2, CategoryId=1, ReasonRequest="x hastalığı", Wallet="12afaadjkj12312", CollectedAid=123131.23},
-                new Request{RequestId=3, CategoryId=2, ReasonRequest="y hastası", Wallet="123jkrjkj12312", CollectedAid=123131.23},
-                new Request{RequestId=4, CategoryId=2, ReasonRequest="z hastası", Wallet="123jkfhhfhfkj12312", CollectedAid=123131.23},
-                new Request{RequestId=5, CategoryId=2, ReasonRequest="w hastası", Wallet="123jkahfthkj12312", CollectedAid=123131.23}
+                new Request{RequestId=1, CategoryId=1, ReasonRequest="sma hastası", Wallet="123jkadjkj12312", CollectedAid=123431},
+                new Request{RequestId=2, CategoryId=1, ReasonRequest="x hastalığı", Wallet="12afaadjkj12312", CollectedAid=123131},
+                new Request{RequestId=3, CategoryId=2, ReasonRequest="y hastası", Wallet="123jkrjkj12312", CollectedAid=123131},
+                new Request{RequestId=4, CategoryId=2, ReasonRequest="z hastası", Wallet="123jkfhhfhfkj12312", CollectedAid=123131},
+                new Request{RequestId=5, CategoryId=2, ReasonRequest="w hastası", Wallet="123jkahfthkj12312", CollectedAid=123131}
             };
         }
         public void Add(Request request) 
