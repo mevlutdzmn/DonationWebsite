@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFCategoryDal : ICategoryDal
+    public class EfCategoryDal : ICategoryDal
     {
         public void Add(Category entity)
         {
