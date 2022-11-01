@@ -11,7 +11,7 @@ using System.Text;
 namespace DataAccess.Concrete.EntityFramework
 {
     //NuGet-paket kullanımı
-    public class EfRequestDal : EfEntityRepositoryBase<Request,DonationWebsiteContext>, IRequestDal
+    public class EfRequestDal : EfEntityRepositoryBase<Request,DonationWebsiteContext>,IRequestDal
     {
         
     }
