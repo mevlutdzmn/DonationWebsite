@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -18,27 +20,50 @@ namespace Business.Concrete
             _requestDal = requestDal;
         }
 
-        public List<Request> GetAll()
+        public IResult Add(Request request)
         {
             //iş kodları
-            //yetkisi varmı?
-            return _requestDal.GetAll();
+            //magic strings yapıldı
+            if (request.ReasonRequest.Length<5)
+            {
+                return new ErrorResult(Messages.ReasonRequestInvalid);
+            }
+
+            _requestDal.Add(request);
+            return new Result(true, Messages.RequestAdded);
         }
 
-        public List<Request> GetByCategoryId(int id)
+        public IDataResult<List<Request>> GetAll()
+        {
+            //iş kodları,yetkisi varmı? kodlar buraya yazılacak
+            //belli bir saatten sonra talep listelenmesini kapatmak istiyoruz
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult<List<Request>>(Messages.MaintenanceTime);
+            }
+
+            return new SuccessDataResult<List<Request>>(_requestDal.GetAll(),Messages.RequestsListed);
+        }
+
+        public IDataResult<List<Request>> GetByCategoryId(int id)
         {
             //gönderdiğim id eşit ise kategori id ye listele
-            return _requestDal.GetAll(r => r.CategoryId == id);
+            return new SuccessDataResult<List<Request>>(_requestDal.GetAll(r => r.CategoryId == id));
         }
 
-        public List<Request> GetByCollectedAid(int collectedAid)
+        public IDataResult<List<Request>> GetByCollectedAid(int collectedAid)
         {
-            return _requestDal.GetAll(r => r.CollectedAid == collectedAid);
+            return new SuccessDataResult<List<Request>>(_requestDal.GetAll(r => r.CollectedAid == collectedAid));
         }
 
-        public List<RequestDetailDto> GetRequestDetails()
+        public IDataResult<Request> GetById(int requestId)
         {
-            return _requestDal.GetRequestDetails();
+            return new SuccessDataResult<Request>(_requestDal.Get(r => r.RequestId == requestId));
+        }
+
+        public IDataResult<List<RequestDetailDto>> GetRequestDetails()
+        {
+            return new SuccessDataResult<List<RequestDetailDto>>( _requestDal.GetRequestDetails());
         }
     }
 }

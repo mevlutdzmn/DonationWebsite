@@ -13,7 +13,7 @@ namespace ConsoleUI
         {
             //IoC uygulanacak
             //requestin testinin bu method ile yaptık methoh haline getidik,altaki method
-            RequestTest();
+           RequestTest();
             // CategoryTest();
 
         }
@@ -31,7 +31,7 @@ namespace ConsoleUI
         {
             RequestManager requestManager = new RequestManager(new EfRequestDal());
 
-            foreach (var request in requestManager.GetRequestDetails())
+            foreach (var request in requestManager.GetRequestDetails().Data)
             {
                 Console.WriteLine(request.ReasonRequest +"/"+request.CategoryName);
             }
