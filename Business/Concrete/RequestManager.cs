@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,6 +34,11 @@ namespace Business.Concrete
         public List<Request> GetByCollectedAid(int collectedAid)
         {
             return _requestDal.GetAll(r => r.CollectedAid == collectedAid);
+        }
+
+        public List<RequestDetailDto> GetRequestDetails()
+        {
+            return _requestDal.GetRequestDetails();
         }
     }
 }
