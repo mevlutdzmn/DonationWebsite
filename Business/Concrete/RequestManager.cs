@@ -63,6 +63,10 @@ namespace Business.Concrete
 
         public IDataResult<List<RequestDetailDto>> GetRequestDetails()
         {
+            if (DateTime.Now.Hour == 18)
+            {
+                return new ErrorDataResult<List<RequestDetailDto>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<RequestDetailDto>>( _requestDal.GetRequestDetails());
         }
     }

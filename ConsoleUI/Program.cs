@@ -31,10 +31,22 @@ namespace ConsoleUI
         {
             RequestManager requestManager = new RequestManager(new EfRequestDal());
 
-            foreach (var request in requestManager.GetRequestDetails().Data)
+            var result = requestManager.GetRequestDetails();
+
+            if (result.Success)
             {
-                Console.WriteLine(request.ReasonRequest +"/"+request.CategoryName);
+                foreach (var request in result.Data)
+                {
+                    Console.WriteLine(request.ReasonRequest + "/" + request.CategoryName);
+                }
+
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+          
         }
     }
 }

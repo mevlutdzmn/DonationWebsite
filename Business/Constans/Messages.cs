@@ -11,7 +11,7 @@ namespace Business.Constans
     {
         public static string RequestAdded = "Talep eklendi";
         public static string ReasonRequestInvalid = "talep metni geçersiz";
-        internal static string MaintenanceTime="";
-        internal static string RequestsListed;
+        public static string MaintenanceTime="Sistem bakımda";
+        public static string RequestsListed="Talepler listelendi";
     }
 }
