@@ -31,8 +31,8 @@ namespace WebAPI
         {
             services.AddControllers();
             //eðer birisi ýrequest service isterse kaþýlýðý reequstmanagerdýr
-            services.AddSingleton<IRequestService,RequestManager>();
-            services.AddSingleton<IRequestDal, EfRequestDal>();
+            //services.AddSingleton<IRequestService,RequestManager>();
+            //services.AddSingleton<IRequestDal, EfRequestDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,22 @@
+﻿using Autofac;
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Business.DependencyResolvers.Autofac
+{
+    public class AutofacBusinessModule :Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
+            //Irequestservice istenirse ona requestmanager ver
+            //SingleInstance bizim için instance oluşturuyordu data tutmayan tek bir tane
+            builder.RegisterType<RequestManager>().As<IRequestService>().SingleInstance();
+            builder.RegisterType<EfRequestDal>().As<IRequestDal>().SingleInstance();
+        }
+    }
+}
