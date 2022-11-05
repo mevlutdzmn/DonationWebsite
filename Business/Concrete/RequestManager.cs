@@ -37,10 +37,10 @@ namespace Business.Concrete
         {
             //iş kodları,yetkisi varmı? kodlar buraya yazılacak
             //belli bir saatten sonra talep listelenmesini kapatmak istiyoruz
-            if (DateTime.Now.Hour==22)
-            {
-                return new ErrorDataResult<List<Request>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 12)
+            //{
+            //    return new ErrorDataResult<List<Request>>(Messages.MaintenanceTime);
+            //}
 
             return new SuccessDataResult<List<Request>>(_requestDal.GetAll(),Messages.RequestsListed);
         }
