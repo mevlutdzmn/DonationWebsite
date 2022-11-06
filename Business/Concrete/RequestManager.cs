@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,15 +23,13 @@ namespace Business.Concrete
         {
             _requestDal = requestDal;
         }
-
+        //add methodunu doğrula requestvalidatordaki kurallara göre
+        [ValidationAspect(typeof(RequestValidator))]
         public IResult Add(Request request)
         {
             //iş kodları
             //magic strings yapıldı
-            if (request.ReasonRequest.Length<5)
-            {
-                return new ErrorResult(Messages.ReasonRequestInvalid);
-            }
+            //ValidationTool.Validate(new RequestValidator(), request);
 
             _requestDal.Add(request);
             return new Result(true, Messages.RequestAdded);
