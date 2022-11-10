@@ -11,6 +11,7 @@ using Entities.DTOs;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -31,8 +32,18 @@ namespace Business.Concrete
             //magic strings yapıldı
             //ValidationTool.Validate(new RequestValidator(), request);
 
-            _requestDal.Add(request);
-            return new Result(true, Messages.RequestAdded);
+
+            if (CheckifRequestCountOfCategoryCorrect(request.CategoryId).Success)
+            {
+                if (CheckifReasonRequestexists(request.ReasonRequest).Success)
+                {
+                    _requestDal.Add(request);
+                    return new Result(true, Messages.RequestAdded);
+                }
+                
+            }
+            return new ErrorResult();
+           
         }
 
         public IDataResult<List<Request>> GetAll()
@@ -70,6 +81,37 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<RequestDetailDto>>(Messages.MaintenanceTime);
             }
             return new SuccessDataResult<List<RequestDetailDto>>( _requestDal.GetRequestDetails());
+        }
+
+        public IResult Update(Request request)
+        {
+            throw new NotImplementedException();
+        }
+        //bu kategorideki talep sayısı en fazla 10 tane olmalı 
+        private IResult CheckifRequestCountOfCategoryCorrect(int categoryId)
+        {
+            //o kategorideki talepleri bul ve sayısını yaz
+            //select count (*) from requests where categoryId sql karşılığı 
+            var result = _requestDal.GetAll(r => r.CategoryId == categoryId).Count;
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.RequestCountOfCategoryError);
+            }
+            return new SuccessResult();
+
+        }
+        private IResult CheckifReasonRequestexists(string  reasonRequest)
+        {
+            
+            //any  yazdığımıza uyan kayıt varmı demek
+            //aynı talep nedeninden varmı 
+            var result = _requestDal.GetAll(r => r.ReasonRequest == reasonRequest).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.ReasonRequestAlreadyExists);
+            }
+            return new SuccessResult();
+
         }
     }
 }

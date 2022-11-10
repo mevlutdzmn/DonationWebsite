@@ -17,5 +17,6 @@ namespace Business.Abstract
         IDataResult<List<RequestDetailDto>> GetRequestDetails();
         IDataResult<Request> GetById(int requestId);
         IResult Add(Request request);
+        IResult Update(Request request);
     }
 }

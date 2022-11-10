@@ -13,5 +13,7 @@ namespace Business.Constans
         public static string ReasonRequestInvalid = "talep metni geçersiz";
         public static string MaintenanceTime="Sistem bakımda";
         public static string RequestsListed="Talepler listelendi";
+        public static string RequestCountOfCategoryError=" bu kategoriden en fazla 10 talep eklenebilir";
+        public static string ReasonRequestAlreadyExists="bu talep nedeni zaten kullanılmıştır";
     }
 }
