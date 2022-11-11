@@ -3,6 +3,7 @@ using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -32,18 +33,16 @@ namespace Business.Concrete
             //magic strings yapıldı
             //ValidationTool.Validate(new RequestValidator(), request);
 
-
-            if (CheckifRequestCountOfCategoryCorrect(request.CategoryId).Success)
+            //iş motoru kullanıldı core katmanından 
+            IResult result = BusinessRules.Run(CheckifReasonRequestexists(request.ReasonRequest), CheckifRequestCountOfCategoryCorrect(request.CategoryId));
+            //eğer kuralla uymuyorsa result döndür uyuyorsa işlemi yap
+            if (result!=null)
             {
-                if (CheckifReasonRequestexists(request.ReasonRequest).Success)
-                {
-                    _requestDal.Add(request);
-                    return new Result(true, Messages.RequestAdded);
-                }
-                
+                return result;
             }
-            return new ErrorResult();
-           
+            _requestDal.Add(request);
+            return new Result(true, Messages.RequestAdded);
+
         }
 
         public IDataResult<List<Request>> GetAll()
