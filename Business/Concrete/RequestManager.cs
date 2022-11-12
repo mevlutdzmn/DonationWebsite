@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -25,6 +26,7 @@ namespace Business.Concrete
         {
             _requestDal = requestDal;
         }
+        [SecuredOperation("Admin")]
         //add methodunu doğrula requestvalidatordaki kurallara göre
         [ValidationAspect(typeof(RequestValidator))]
         public IResult Add(Request request)
