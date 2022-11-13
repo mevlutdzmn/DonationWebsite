@@ -2,6 +2,7 @@
 using Business.BusinessAspect.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -29,6 +30,8 @@ namespace Business.Concrete
         //add methodunu doğrula requestvalidatordaki kurallara göre
         //[SecuredOperation("admin")]
         [ValidationAspect(typeof(RequestValidator))]
+        [CacheRemoveAspect("IRequestService.Get")]
+
         public IResult Add(Request request)
         {
             //iş kodları
@@ -47,6 +50,7 @@ namespace Business.Concrete
 
         }
 
+        [CacheAspect]// key, value
         public IDataResult<List<Request>> GetAll()
         {
             //iş kodları,yetkisi varmı? kodlar buraya yazılacak
@@ -70,6 +74,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Request>>(_requestDal.GetAll(r => r.CollectedAid == collectedAid));
         }
 
+        [CacheAspect]
         public IDataResult<Request> GetById(int requestId)
         {
             return new SuccessDataResult<Request>(_requestDal.Get(r => r.RequestId == requestId));
@@ -84,6 +89,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RequestDetailDto>>( _requestDal.GetRequestDetails());
         }
 
+        [ValidationAspect(typeof(RequestValidator))]
+        //Belekteki içinde Get olan tüm key leri iptal et
+        //IRequsetService teki tüm getleri sil
+        [CacheRemoveAspect("IRequestService.Get")]
         public IResult Update(Request request)
         {
             throw new NotImplementedException();
@@ -113,6 +122,11 @@ namespace Business.Concrete
             }
             return new SuccessResult();
 
+        }
+
+        public IResult AddTransactionalTest(Request request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

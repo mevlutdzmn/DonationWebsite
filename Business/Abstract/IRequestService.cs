@@ -18,5 +18,6 @@ namespace Business.Abstract
         IDataResult<Request> GetById(int requestId);
         IResult Add(Request request);
         IResult Update(Request request);
+        IResult AddTransactionalTest(Request request);
     }
 }
