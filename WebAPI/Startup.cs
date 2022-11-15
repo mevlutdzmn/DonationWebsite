@@ -21,6 +21,7 @@ using Core.Utilities.Security.Encryption;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.DependencyResolvers;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WebAPI
 {
@@ -40,6 +41,7 @@ namespace WebAPI
             //eðer birisi ýrequest service isterse kaþýlýðý reequstmanagerdýr
             //services.AddSingleton<IRequestService,RequestManager>();
             //services.AddSingleton<IRequestDal, EfRequestDal>();
+            services.AddCors();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -69,6 +71,8 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            //burdan istek gelirse izin ver
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:60738").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

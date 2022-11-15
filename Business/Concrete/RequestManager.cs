@@ -28,7 +28,7 @@ namespace Business.Concrete
             _requestDal = requestDal;
         }
         //add methodunu doğrula requestvalidatordaki kurallara göre
-        [SecuredOperation("request.add,admin")]
+        //[SecuredOperation("request.add,admin,user")]
         [ValidationAspect(typeof(RequestValidator))]
         [CacheRemoveAspect("IRequestService.Get")]
 
