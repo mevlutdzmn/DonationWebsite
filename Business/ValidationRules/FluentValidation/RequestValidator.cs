@@ -11,9 +11,9 @@ namespace Business.ValidationRules.FluentValidation
         public RequestValidator()
         {
             RuleFor(r => r.ReasonRequest).NotEmpty();
-            RuleFor(r => r.ReasonRequest).MinimumLength(5);
-            RuleFor(r => r.CollectedAid).NotEmpty();
-            RuleFor(r => r.CollectedAid).GreaterThan(0);
+            RuleFor(r => r.ReasonRequest).MinimumLength(2);
+            //RuleFor(r => r.CollectedAid).NotEmpty();
+            //RuleFor(r => r.CollectedAid).GreaterThan(0);
         }
     }
 }

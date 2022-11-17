@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
 
-            Thread.Sleep(5000);
+            Thread.Sleep(500);
 
             var result =_requestService.GetAll();
             if (result.Success)
@@ -67,6 +67,31 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
 
+        }
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+
+
+            var result = _requestService.GetByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+
+        }
+        [HttpGet("getrequestdetails")]
+        public IActionResult GetRequestDetails(int categoryId)
+        {
+            var result = _requestService.GetRequestDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
 
     }
