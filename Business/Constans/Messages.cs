@@ -18,11 +18,11 @@ namespace Business.Constans
         public static string RequestCountOfCategoryError=" bu kategoriden en fazla 10 talep eklenebilir";
         public static string ReasonRequestAlreadyExists="bu talep nedeni zaten kullanılmıştır";
         public static string AuthorizationDenied="Yetkiniz yok.";
-        internal static string UserRegistered;
-        internal static User UserNotFound;
-        internal static User PasswordError;
-        internal static string SuccessfulLogin;
+        public static string UserRegistered="kayıt oldu";
+        public static string UserNotFound="kullanıcı bulunamadı";
+        public static string PasswordError="parola hatası";
+        public static string SuccessfulLogin="başarılı giriş";
         public static string UserAlreadyExists="kullanıcı mevcut";
-        internal static string AccessTokenCreated;
+        public static string AccessTokenCreated="Token oluşturuldu";
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Core.Utilities.Security.Encryption
     {
         public static SecurityKey CreateSecurityKey(string securityKey)
         {
-            //simetrik bir sekuri key oluşturuldu
+            //simetrik bir sekuri key oluşturuld
             return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
         }
     }

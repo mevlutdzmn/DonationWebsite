@@ -9,9 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Core.Extensions;
 using Business.Constans;
 
-namespace Business.BusinessAspect.Autofac
+namespace Business.BusinessAspects.Autofac
 {
-    //JWT için yazıldı
+    //JWT
     public class SecuredOperation : MethodInterception
     {
         private string[] _roles;

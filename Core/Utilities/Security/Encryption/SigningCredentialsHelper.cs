@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Core.Utilities.Security.Encryption
 {
+    
     public class SigningCredentialsHelper
     {
-        //hangi anahtar hangi algoritma 
+        //hangi anahtar hangi algoritma
         public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)
         {
             //securityKey-güvenlik anahtarın bu

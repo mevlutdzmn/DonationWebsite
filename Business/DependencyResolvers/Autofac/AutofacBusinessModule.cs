@@ -7,16 +7,18 @@ using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business.DependencyResolvers.Autofac
 {
-    public class AutofacBusinessModule :Module
+    public class AutofacBusinessModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
+
             //Irequestservice istenirse ona requestmanager ver
             //SingleInstance bizim için instance oluşturuyordu data tutmayan tek bir tane
             builder.RegisterType<RequestManager>().As<IRequestService>().SingleInstance();
@@ -38,6 +40,7 @@ namespace Business.DependencyResolvers.Autofac
                 {
                     Selector = new AspectInterceptorSelector()
                 }).SingleInstance();
+
 
         }
     }

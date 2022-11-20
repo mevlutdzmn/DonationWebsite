@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.BusinessAspect.Autofac;
+using Business.BusinessAspects.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
@@ -28,10 +28,10 @@ namespace Business.Concrete
             _requestDal = requestDal;
         }
         //add methodunu doğrula requestvalidatordaki kurallara göre
-        //[SecuredOperation("request.add,admin,user")]
-        [ValidationAspect(typeof(RequestValidator))]
-        [CacheRemoveAspect("IRequestService.Get")]
 
+        [ValidationAspect(typeof(RequestValidator))]
+        //[CacheRemoveAspect("IRequestService.Get")]
+        [SecuredOperation("admin")]
         public IResult Add(Request request)
         {
             //iş kodları
