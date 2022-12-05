@@ -31,7 +31,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(RequestValidator))]
         //[CacheRemoveAspect("IRequestService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Add(Request request)
         {
             //iş kodları
@@ -48,6 +48,20 @@ namespace Business.Concrete
             _requestDal.Add(request);
             return new Result(true, Messages.RequestAdded);
 
+        }
+        //[SecuredOperation("admin")]
+        [ValidationAspect(typeof(RequestValidator))]
+        //Belekteki içinde Get olan tüm key leri iptal et
+        public IResult Update(Request request)
+        {
+            _requestDal.Update(request);
+            return new SuccessResult(Messages.RequestUpdated);
+        }
+        public IResult Delete(int requestId)
+        {
+            var result = _requestDal.Get(r => r.RequestId == requestId);
+            _requestDal.Delete(result);
+            return new SuccessResult(Messages.RequestDeleted);
         }
 
         [CacheAspect]// key, value
@@ -74,7 +88,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Request>>(_requestDal.GetAll(r => r.CollectedAid == collectedAid));
         }
 
-        [CacheAspect]
+      
         public IDataResult<Request> GetById(int requestId)
         {
             return new SuccessDataResult<Request>(_requestDal.Get(r => r.RequestId == requestId));
@@ -89,14 +103,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RequestDetailDto>>( _requestDal.GetRequestDetails());
         }
 
-        [ValidationAspect(typeof(RequestValidator))]
-        //Belekteki içinde Get olan tüm key leri iptal et
-        //IRequsetService teki tüm getleri sil
-        [CacheRemoveAspect("IRequestService.Get")]
-        public IResult Update(Request request)
-        {
-            throw new NotImplementedException();
-        }
+        
         //bu kategorideki talep sayısı en fazla 10 tane olmalı 
         private IResult CheckifRequestCountOfCategoryCorrect(int categoryId)
         {
@@ -128,5 +135,7 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

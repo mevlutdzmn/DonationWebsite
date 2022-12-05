@@ -32,15 +32,11 @@ namespace Core.DataAccess.EntityFramework
 
         public void Delete(TEntity entity)
         {
-            //IDisposable pattern implementation of c#
             using (TContext context = new TContext())
             {
-                //addedEntity : eklenen varlık 
-                //referansı yakala
-                var deletedEntity = context.Entry(entity);
-                //silinecek  bir nesne 
+
+                var deletedEntity = context.Entry(entity);//referansı yakala
                 deletedEntity.State = EntityState.Deleted;
-                //sil
                 context.SaveChanges();
             }
         }

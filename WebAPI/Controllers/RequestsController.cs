@@ -53,8 +53,29 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpDelete("delete")]
+        public IActionResult Delete(int requestId)
+        {
+            var result = _requestService.Delete(requestId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
-        [HttpGet("getbyid")]
+        [HttpPut("update")]
+        public IActionResult Update(Request request)
+        {
+            var result = _requestService.Update(request);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+            [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
 

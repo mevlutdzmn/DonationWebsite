@@ -12,6 +12,8 @@ namespace Business.Constans
     public static class Messages
     {
         public static string RequestAdded = "Talep eklendi";
+        public static string RequestDeleted = "Talep silindi";
+        public static string RequestUpdated = "Talep güncellendi";
         public static string ReasonRequestInvalid = "talep metni geçersiz";
         public static string MaintenanceTime="Sistem bakımda";
         public static string RequestsListed="Talepler listelendi";
@@ -24,5 +26,7 @@ namespace Business.Constans
         public static string SuccessfulLogin="başarılı giriş";
         public static string UserAlreadyExists="kullanıcı mevcut";
         public static string AccessTokenCreated="Token oluşturuldu";
+        
+
     }
 }
