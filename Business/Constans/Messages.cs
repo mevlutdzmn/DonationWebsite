@@ -11,6 +11,7 @@ namespace Business.Constans
     //messajları buradan vericem
     public static class Messages
     {
+        public static string passwordChanged="Kullanıcı şifresi değiştirildi";
         public static string RequestAdded = "Talep eklendi";
         public static string RequestDeleted = "Talep silindi";
         public static string RequestUpdated = "Talep güncellendi";
@@ -26,7 +27,9 @@ namespace Business.Constans
         public static string SuccessfulLogin="başarılı giriş";
         public static string UserAlreadyExists="kullanıcı mevcut";
         public static string AccessTokenCreated="Token oluşturuldu";
-        
-
+        public static string UserAdded="Kullanıcı eklendi";
+        public static string UserDeleted="Kullanıcı silindi";
+        public static string UserListed="Kullanıcılar listelendi";
+        public static string UserUpdated="Kullanıcı güncellendi";
     }
 }
