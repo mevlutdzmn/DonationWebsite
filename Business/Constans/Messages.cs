@@ -11,6 +11,7 @@ namespace Business.Constans
     //messajları buradan vericem
     public static class Messages
     {
+        public static string succeed="başarılı";
         public static string passwordChanged="Kullanıcı şifresi değiştirildi";
         public static string RequestAdded = "Talep eklendi";
         public static string RequestDeleted = "Talep silindi";
@@ -31,5 +32,9 @@ namespace Business.Constans
         public static string UserDeleted="Kullanıcı silindi";
         public static string UserListed="Kullanıcılar listelendi";
         public static string UserUpdated="Kullanıcı güncellendi";
+        public static string RequestImageAdded="resim eklendi";
+        public static string RequestImageDeleted="resim silindi";
+        public static string RequestImageListed="resimler listelendi";
+        public static string RequestImageUpdated="resim güncellendi";
     }
 }

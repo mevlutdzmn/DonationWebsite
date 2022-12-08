@@ -3,6 +3,7 @@ using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -23,6 +24,10 @@ namespace Business.DependencyResolvers.Autofac
             //SingleInstance bizim için instance oluşturuyordu data tutmayan tek bir tane
             builder.RegisterType<RequestManager>().As<IRequestService>().SingleInstance();
             builder.RegisterType<EfRequestDal>().As<IRequestDal>().SingleInstance();
+
+            builder.RegisterType<RequestImageManager>().As<IRequestImageService>().SingleInstance();
+            builder.RegisterType<EfRequestImageDal>().As<IRequestImageDal>().SingleInstance();
+            builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
 
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
