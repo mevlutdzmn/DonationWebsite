@@ -60,9 +60,9 @@ namespace Business.Concrete
         public IDataResult<List<RequestImageDto>> GetImagesByRequestId(int requestId)
         {
             var result = _requestImageDal.GetRequestImageDetails(requestImage => requestImage.RequestId == requestId);
-            foreach (var trainerImage in result)
+            foreach (var requestImage in result)
             {
-                trainerImage.ImagePath = _fileHelper.GetByName(PathConstants.ImagesPath + trainerImage.ImagePath);
+                requestImage.ImagePath = _fileHelper.GetByName(PathConstants.ImagesPath + requestImage.ImagePath);
             }
 
             return new SuccessDataResult<List<RequestImageDto>>(result, Messages.succeed);

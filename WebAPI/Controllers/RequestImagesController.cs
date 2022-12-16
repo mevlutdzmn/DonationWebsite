@@ -42,16 +42,16 @@ namespace WebAPI.Controllers
         //    return BadRequest(result);
         //}
 
-        //[HttpGet("getimagesbytrainerid")]
-        //public IActionResult GetImagesByTrainerId(int trainerId)
-        //{
-        //    var result = _requestImageService.GetImagesByRequestId(trainerId);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
+        [HttpGet("getimagesbyrequestid")]
+        public IActionResult GetImagesByRequestId(int requestId)
+        {
+            var result = _requestImageService.GetImagesByRequestId(requestId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
 
         [HttpPost("add")]
